@@ -9,6 +9,12 @@ class LinearBoard():
     None un espacio vacío
     """
 
+    @classmethod
+    def fromList(cls, lst):
+        board = cls()
+        board._column = lst
+        return board
+
     def __init__(self):
         #Una lista de None.
         self._column = [None for i in range(BOARD_LENGTH)]   

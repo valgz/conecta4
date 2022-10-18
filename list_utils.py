@@ -4,6 +4,7 @@ def find_one(list, needle):
     
     return find_n(list, needle, 1)
 
+
 def find_n(list, needle, n):
     
     '''
@@ -27,6 +28,7 @@ def find_n(list, needle, n):
         return count >= n
     else:
         return False
+
 
 def find_streak(list, needle, n):
     ''' 
@@ -56,3 +58,87 @@ def find_streak(list, needle, n):
     #Para valores de n < 0:
     else:
         return False
+
+
+def first_elements(list_of_lists):
+    '''
+    Recibe una lista de listas y devuelve una lista 
+    con los primeros elementos de la original
+    '''
+    return nth_elements(list_of_lists, 0)
+
+
+def nth_elements(list_of_lists, position):
+    '''
+    Recibe una lista de listas y devuelve una lista 
+    con los enesimos elementos de la original
+    '''
+    result = []
+    for lst in list_of_lists:
+        result.append(lst[position])
+    return result
+
+
+def transpose(matrix):
+    '''
+    Recibe una matriz y devuelve su transpuesta
+    '''
+    transposed = []
+    for i in range(len(matrix[0])):
+        sublist = nth_elements(matrix, i)
+        transposed.append(sublist)
+    return transposed
+
+
+def displace(lst, distance, filler=None):
+    res = ''
+    if distance == 0:
+        res = lst
+    elif distance > 0:
+        filling = [filler] * distance
+        res = filling + lst
+        res = res[:-distance]
+    else:
+        filling = [filler] * abs(distance)
+        res = lst + filling
+        res = res[abs(distance):]
+    return res
+
+
+def displace_matrix(m, filler=None):
+    new_m = []
+    for i in range(len(m)):
+        new_m.append(displace(m[i], i - 1, filler))
+    return new_m
+
+
+def replace(lst, predicate, new_value):
+    new_list = []
+    for element in lst:
+        if predicate(element):
+            new_list.append(new_value)
+        else:
+            new_list.append(element)
+    return new_list
+
+
+def replace_matrix(matrix, predicate, new_element):
+    accum = []
+    for sublist in matrix:
+        accum.append(replace(sublist, predicate, new_element))
+    return accum
+
+
+def reverse_list(l):
+    return list(reversed(l))
+
+
+def reverse_matrix(matrix):
+    return list(map(lambda sublist: reverse_list(sublist), matrix))
+
+    '''
+    accum = []
+    for sublist in matrix:
+        accum.append(reverse_list(sublist))
+    return accum
+    '''

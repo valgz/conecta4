@@ -41,6 +41,9 @@ class SquareBoard():
         
         return f'<{self.__class__}: {tmp}>'
     
+    def __len__(self):
+        return len(self._columns)
+        
 
     def is_full(self):
         '''

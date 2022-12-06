@@ -63,6 +63,8 @@ class SquareBoard():
     #con as_matrix hacemos que con cada LinearBoard del Squareboard aplicamos una función que convierte cada 
     #LinearBoard en una lista, por tanto al aplicar map y luego list se genera una lista de listas.
     
+    def add(self, char, column):
+        return self._columns[column].add(char)    
 
     def is_victory(self, char):
         return self._any_vertical_victory(char) or self._any_horizontal_victory(char) or self._any_rising_victory(char) or self._any_sinking_victory(char)
